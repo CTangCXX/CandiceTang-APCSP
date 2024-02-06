@@ -1,0 +1,85 @@
+pseudocode:
+
+
+FUNCTION display_intro():
+    OUTPUT "===================================================================================================="
+    OUTPUT "#                                  Welcome to the Word Guessing Game!                              #"
+    OUTPUT "#                     You have 3 topics to choose from: Animals, Vegetables, Places.               #"
+    OUTPUT "#            You will earn points based on the number of tries it takes to guess the word.         #"
+    OUTPUT "===================================================================================================="
+    OUTPUT ""
+
+FUNCTION select_word(topic):
+    words = {
+        "Animals": ["cat", "dog", "elephant", "lion", "tiger"],
+        "Vegetables": ["carrot", "potato", "lettuce", "cucumber", "tomato"],
+        "Places": ["beach", "mountain", "forest", "desert", "city"]
+    }
+    RETURN Randomly select a word from the list of words for the given topic
+
+FUNCTION play_game(word):
+    max_attempts = 4
+    score = 4
+    attempts = 0
+    correct_guess = False
+
+    WHILE attempts < max_attempts AND NOT correct_guess:
+        guess = INPUT "Guess the word: "
+        IF guess == word:
+            correct_guess = True
+        ELSE:
+            OUTPUT "Incorrect guess. Try again."
+            attempts += 1
+            score -= 1
+
+    IF correct_guess:
+        OUTPUT "Congratulations! You guessed the word:", word
+        OUTPUT "You earned " + score + " points."
+    ELSE:
+        OUTPUT "Out of guesses! The word was:", word
+        OUTPUT "Better luck next time."
+
+    RETURN score
+
+FUNCTION update_scoreboard(topic, score):
+    ADD score to the scoreboard for the given topic
+
+FUNCTION display_scoreboard():
+    OUTPUT "SCOREBOARD:"
+    FOR each topic in scoreboard:
+        OUTPUT topic + ": " + score
+
+FUNCTION main():
+    scoreboard = {
+        "Animals": 0,
+        "Vegetables": 0,
+        "Places": 0
+    }
+
+    display_intro()
+
+    WHILE True:
+        OUTPUT "Choose a topic: 1. Animals 2. Vegetables 3. Places"
+        choice = INPUT "Enter your choice (1-3): "
+
+        IF choice == '1':
+            topic = "Animals"
+            OUTPUT "Take a guess:", "cat, dog, elephant, lion, tiger"
+        ELSE IF choice == '2':
+            topic = "Vegetables"
+            OUTPUT "Take a guess:", "potato, lettuce, cucumber, tomato"
+        ELSE IF choice == '3':
+            topic = "Places"
+            OUTPUT "Take a guess:", "beach, mountain, forest, desert, city"
+        ELSE:
+            OUTPUT "Invalid choice. Please select a number from 1 to 3."
+            CONTINUE to the next iteration of the loop
+
+        word = select_word(topic)
+        score = play_game(word)
+        update_scoreboard(topic, score)
+        display_scoreboard()
+
+        CONTINUE to the next iteration of the loop if the user wants to play again, or EXIT the program
+
+CALL main()
