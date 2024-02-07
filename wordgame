@@ -1,0 +1,133 @@
+import random
+
+
+# Function to display the introduction message
+def display_intro():
+    print(
+        "===================================================================================================="
+    )
+    print(
+        "#                                  Welcome to the Word Guessing Game!                              #"
+    )
+    print(
+        "#                     You have 3 topics to choose from: Animals, Vegetables, Places.               #"
+    )
+    print(
+        "#            You will earn points based on the number of tries it takes to guess the word.         #"
+    )
+    print(
+        "===================================================================================================="
+    )
+    print("")
+
+
+# Function to select a word from the given topic
+def select_word(topic):
+    # Dictionary containing words for each topic
+    words = {
+        "Animals": ["cat", "dog", "elephant", "lion", "tiger"],
+        "Vegetables": ["carrot", "potato", "lettuce", "cucumber", "tomato"],
+        "Places": ["beach", "mountain", "forest", "desert", "city"],
+    }
+    # Randomly select a word from the list of words for the given topic
+    return random.choice(words[topic])
+
+
+# Function to play the game with the selected word
+def play_game(word):
+    max_attempts = 4  # Maximum number of attempts allowed
+    score = max_attempts  # Initial score is the maximum attempts
+    attempts = 0  # Counter for attempts
+    correct_guess = False  # Flag to indicate if the word is guessed correctly
+
+    # Loop until the maximum number of attempts is reached or the word is guessed correctly
+    while attempts < max_attempts and not correct_guess:
+        guess = input(
+            "Guess a letter or the whole word: "
+        ).lower()  # Prompt the user to guess a letter or the whole word
+        if len(guess) == 1:  # Guessing a letter
+            if guess in word:
+                print(
+                    "Correct guess!"
+                )  # Inform the user about correct guess of a letter
+            else:
+                print(
+                    "Incorrect guess. Try again."
+                )  # Display message for incorrect guess
+                attempts += 1  # Increment the attempts counter
+                score -= 1  # Decrease the score for each incorrect guess
+        elif guess == word:  # Guessing the whole word
+            correct_guess = True  # Set flag to True if the guess is correct
+        elif set(guess).intersection(
+            set(word)
+        ):  # Checking if some letters of the guessed word belong to the actual word
+            print(
+                "Some letters in your guess belong to the word, but it's not the correct word. Try again."
+            )
+            attempts += 1
+            score -= 1
+        else:
+            print("Incorrect guess. Try again.")  # Display message for incorrect guess
+            attempts += 1  # Increment the attempts counter
+            score -= 1  # Decrease the score for each incorrect guess
+
+    # Display the result of the game
+    if correct_guess:
+        print("Congratulations! You guessed the word:", word)
+        print("You earned", score, "points.")
+    else:
+        print("Out of guesses! The word was:", word)
+        print("Better luck next time.")
+
+    return score  # Return the earned score
+
+
+# Function to update the scoreboard with the earned score for a given topic
+def update_scoreboard(topic, score, scoreboard):
+    scoreboard[topic] += score  # Add the score to the scoreboard for the given topic
+
+
+# Function to display the current scoreboard
+def display_scoreboard(scoreboard):
+    print("SCOREBOARD:")
+    for topic, score in scoreboard.items():
+        print(f"{topic}: {score}")  # Display each topic and its corresponding score
+
+
+# Main function to run the game
+def main():
+    # Initialize the scoreboard with initial scores for each topic
+    scoreboard = {"Animals": 0, "Vegetables": 0, "Places": 0}
+
+    display_intro()  # Display the introduction message
+
+    # Main game loop
+    while True:
+        print("Choose a topic: 1. Animals 2. Vegetables 3. Places")
+        choice = input("Enter your choice (1-3): ")
+
+        # Map user's choice to the corresponding topic
+        topics = ["Animals", "Vegetables", "Places"]
+        try:
+            topic = topics[int(choice) - 1]
+        except (ValueError, IndexError):
+            print("Invalid choice. Please select a number from 1 to 3.")
+            continue  # Continue to the next iteration of the loop if the choice is invalid
+
+        word = select_word(topic)  # Select a word for the chosen topic
+        score = play_game(word)  # Play the game with the selected word
+        update_scoreboard(
+            topic, score, scoreboard
+        )  # Update the scoreboard with the earned score
+        display_scoreboard(scoreboard)  # Display the current scoreboard
+
+        # Ask the user if they want to play again
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != "yes":
+            print("Thank you for playing!")
+            break  # Exit the loop if the user does not want to play again
+
+
+# Run the main function to start the game
+if __name__ == "__main__":
+    main()
