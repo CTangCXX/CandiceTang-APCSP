@@ -1,0 +1,235 @@
+import random
+
+# Function to display the menu message
+def menu():
+    print(
+        "===================================================================================================="
+    )
+    print(
+        "#                                      Word Guessing Game Menu                                      #"
+    )
+    print(
+        "#                                             1. Display Instructions                               #"
+    )
+    print(
+        "#                                             2. Animals                                            #"
+    )
+    print(
+        "#                                             3. Vegetables                                         #"
+    )
+    print(
+        "#                                             4. Places                                             #"
+    )
+    print(
+        "#                                             5. Random Topic                                       #"
+    )
+    print(
+        "#                                             6. See Scoreboard                                     #"
+    )
+    print(
+        "#                                             7. Exit                                               #"
+    )
+    print(
+        "===================================================================================================="
+    )
+
+# Function to display game instructions
+def display_instructions():
+    print(
+        "===================================================================================================="
+    )
+    print(
+        "#                                  Instructions for the Word Guessing Game                            #"
+    )
+    print(
+        "#                                                                                                    #"
+    )
+    print(
+        "# 1. Choose a topic from Animals, Vegetables, or Places.                                              #"
+    )
+    print(
+        "# 2. You have n-1 chances to guess the word, where n is the number of characters in the word.         #"
+    )
+    print(
+        "# 3. Guess a letter or the whole word.                                                                #"
+    )
+    print(
+        "# 4. If guessing a letter, we'll provide a hint with dashes indicating the positions of that letter. #"
+    )
+    print(
+        "#                                                                                                    #"
+    )
+    print(
+        "===================================================================================================="
+    )
+    return
+
+# Function to select a word from the given topic
+def select_word(topic):
+    words = {
+        "Animals": [
+            "cat",
+            "dog",
+            "elephant",
+            "lion",
+            "tiger",
+            "deer",
+            "sheep",
+            "cow",
+            "tiger",
+            "mouse",
+            "rabbit",
+            "duck",
+            "horse",
+            "pig",
+            "fish",
+            "goat",
+            "chicken",
+            "fox",
+            "monkey",
+            "bear",
+        ],
+        "Vegetables": [
+            "carrot",
+            "potato",
+            "lettuce",
+            "cucumber",
+            "tomato",
+            "broccoli",
+            "beans",
+            "garlic",
+            "onions",
+            "pepper",
+            "mushroom",
+            "artichoke",
+            "asparagus",
+            "califlower",
+            "cabbage",
+            "sprouts",
+            "seaweed",
+            "turnip",
+            "radish",
+            "ginger",
+        ],
+        "Places": [
+            "beach",
+            "mountain",
+            "forest",
+            "desert",
+            "city",
+            "school",
+            "library",
+            "museum",
+            "home",
+            "airport",
+            "train station",
+            "park",
+            "classroom",
+            "markey",
+            "mall",
+            "field",
+            "court",
+            "amusement park",
+            "chapel",
+            "church",
+        ],
+    }
+    return random.choice(words[topic])
+
+# Function to provide hint for the guessed letter
+def provide_hint(word, guessed_letter, hint):
+    for i in range(len(word)):
+        if word[i] == guessed_letter:
+            hint[i] = guessed_letter
+    return hint
+
+# Function to play the game with the selected topic
+def play_game(word):
+    max_attempts = len(word)  # Maximum number of attempts allowed
+    score = max_attempts  # Initial score is the maximum attempts
+    attempts = 0  # Counter for attempts
+    correct_guess = False  # To indicate if the word is guessed correctly
+
+    # Initialize hint with underscores
+    hint = ["_" for _ in word]
+
+    # Loop until the maximum number of attempts is reached or the word is guessed correctly
+    while attempts < max_attempts and not correct_guess:
+        guess = input(
+            "Guess a letter or the whole word: "
+        ).lower()  # Prompt the user to guess
+        if len(guess) == 1:  # Guessing a letter
+            if guess in word:
+                print("Correct guess! The letter is in the word!")
+                hint = provide_hint(word, guess, hint)
+                print("Hint:", " ".join(hint))
+            else:
+                print("Incorrect guess.")  # Message for incorrect guess
+                attempts += 1  # Increment the attempts counter
+                score -= 1  # Decrease the score for each incorrect guess
+        elif guess == word:  # Guessing the whole word
+            correct_guess = True  # Set flag to True if the guess is correct
+        else:
+            print("Incorrect guess. Try again.")  # Display message for incorrect guess
+            attempts += 1  # Increment the attempts counter
+            score -= 1  # Decrease the score for each incorrect guess
+
+    # Display the result of the game
+    if correct_guess:
+        print("Congratulations! You guessed the word:", word)
+        print("You earned", score, "points.")
+    else:
+        print("Out of guesses! The word was:", word)
+    return score  # Return the earned score
+
+# Function to update the scoreboard with the earned score and topic
+def update_scoreboard(name, topic, score):
+    with open("scoreboard.txt", "a") as file:
+        file.write(f"{name}: {topic}: {score}\n")
+
+# Function to display the current scoreboard
+def display_scoreboard():
+    print("SCOREBOARD:")
+    with open("scoreboard.txt", "r") as file:
+        print(file.read())
+
+# Main function to run the game
+def main():
+    # Get user name
+    name = input("Please enter your name: ")
+
+    while True:  # Loop until the user chooses to exit
+        menu()
+        choice = input("Enter your choice (1-7): ")
+
+        if choice == "1":
+            display_instructions()
+        elif choice == "2":
+            word = select_word("Animals")
+            score = play_game(word)
+            update_scoreboard(name, "Animals", score)
+        elif choice == "3":
+            word = select_word("Vegetables")
+            score = play_game(word)
+            update_scoreboard(name, "Vegetables", score)
+        elif choice == "4":
+            word = select_word("Places")
+            score = play_game(word)
+            update_scoreboard(name, "Places", score)
+        elif choice == "5":
+            topic = random.choice(["Animals", "Vegetables", "Places"])
+            print(f"Your topic: {topic}")
+            word = select_word(topic)
+            score = play_game(word)
+            update_scoreboard(name, topic, score)
+        elif choice == "6":
+            display_scoreboard()
+        elif choice == "7":
+            print("Thank you for playing!")
+            break  # Exit the loop and end the program
+        else:
+            print("Invalid choice. Please select a number from 1 to 7.")
+
+# Run the main function to start the game
+if __name__ == "__main__":
+    main()
