@@ -1,0 +1,4 @@
+referencing to different pages is href(link.html)
+<a href="https://google.com">Click Here</a>
+<a href="prompts.jpeg">Click Here</a>
+<a href="image.html">Image page</a>
