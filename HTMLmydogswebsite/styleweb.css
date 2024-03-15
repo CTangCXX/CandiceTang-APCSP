@@ -1,0 +1,261 @@
+body {
+    background-color: lightblue;
+}
+
+#title {
+    background-color: IndianRed;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    /* centers the text in the page*/
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+#me {
+    background-color: lightcyan;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 20px;
+}
+
+table {
+    background-color: rosybrown;
+    width: 97%;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid white;
+    font-family: Papyrus;
+    border: 3px solid white;
+    border-collapse: collapse;
+    font-size: 100%;
+    width: 97%;
+    color: white;
+}
+
+td,
+th {
+    height: 70px;
+    border: 1px solid white;
+    padding: 5px;
+    font-size: 30px;
+    color: white;
+}
+
+#list {
+    background-color: lavenderblush;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 15px;
+}
+
+button {
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: Papyrus, Arial, sans-serif;
+}
+
+#list:hover {
+    background-color: lavender;
+    < !--when your mouse hovers over,
+    the color will change to orange-->
+}
+
+a[href="intro.html"],
+a[href="mars.html"],
+a[href="athena.html"] {
+    color: MediumVioletRed;
+}
+
+#list {
+    background-color: lavenderblush;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 15px;
+}
+ul > li {
+    color: purple;
+}
+
+#title {
+    background-color: IndianRed;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    /* centers the text in the page*/
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+a[href="https://www.thefarmersdog.com/"] {
+    color: orange;
+}
+#list:hover {
+    background-color: lavender;
+    /*when your mouse hovers over, the color will change to orange*/
+}
+
+#mars {
+    background-color: cornsilk;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid black;
+    font-family: Papyrus;
+    font-size: 20px;
+    font-weight: bold;
+    color: black
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+} /*automatically adjusts margins so that the images and components fit the page as it expands/shrinks*/
+
+button {
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: Papyrus, Arial, sans-serif;
+}
+
+img {
+    image-align: center;
+    border: 5px solid white;
+}
+
+body {
+    background-image: url("back1.JPG");
+}
+
+#introtitle {
+    background-color: powderblue;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    /* centers the text in the page*/
+    border: 3px solid black;
+    font-family: Papyrus;
+    font-size: 30px;
+    font-weight: bold;
+    color: black
+}
+
+#intro {
+    background-color: cornsilk;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid black;
+    font-family: Papyrus;
+    font-size: 20px;
+    font-weight: bold;
+    color: black
+}
+
+#list {
+    background-color: lavenderblush;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 15px;
+}
+
+#list:hover {
+    background-color: lavender;
+    < !--when your mouse hovers over,
+    the color will change to orange-->
+}
+
+button {
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: Papyrus, Arial, sans-serif;
+}
+
+form {
+    background-color: snow;
+    padding: 50px;
+    margin: 20px;
+    border: 3px solid black;
+    font-family: Papyrus;
+    font-size: 30px;
+    font-weight: bold;
+    color: black
+}
+
+body {
+    background-color: lightblue;
+}
+
+#list {
+    background-color: lavenderblush;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 15px;
+}
+
+#list:hover {
+    background-color: lavender;
+    < !--when your mouse hovers over,
+    the color will change to orange-->
+}
+
+#title {
+    background-color: IndianRed;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    /* centers the text in the page*/
+    border: 3px solid white;
+    font-family: Papyrus;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+#athena {
+    background-color: cornsilk;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid black;
+    font-family: Papyrus;
+    font-size: 20px;
+    font-weight: bold;
+    color: black
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+button {
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: Papyrus, Arial, sans-serif;
+    ;
+}
